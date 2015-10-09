@@ -1,0 +1,16 @@
+.\objects\app_error.o: ..\nrf_libraries\app_error.c
+.\objects\app_error.o: ..\nrf_drivers\hal\nrf.h
+.\objects\app_error.o: ..\nrf_drivers\hal\nrf51.h
+.\objects\app_error.o: ..\arm\Include\core_cm0.h
+.\objects\app_error.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_error.o: ..\arm\Include\core_cmInstr.h
+.\objects\app_error.o: ..\arm\Include\core_cmFunc.h
+.\objects\app_error.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\objects\app_error.o: ..\nrf_drivers\hal\nrf51_bitfields.h
+.\objects\app_error.o: ..\arm\Include\core_cm0.h
+.\objects\app_error.o: ..\nrf_drivers\hal\nrf51_deprecated.h
+.\objects\app_error.o: ..\nrf_drivers\hal\compiler_abstraction.h
+.\objects\app_error.o: ..\nrf_libraries\app_error.h
+.\objects\app_error.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app_error.o: ..\nrf_softdevice\headers\nrf_error.h
+.\objects\app_error.o: ..\nrf_libraries\util\nordic_common.h

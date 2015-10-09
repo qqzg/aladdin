@@ -1,0 +1,13 @@
+.\objects\system_nrf51.o: ..\device\system_nrf51.c
+.\objects\system_nrf51.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\system_nrf51.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\system_nrf51.o: ..\nrf_drivers\hal\nrf.h
+.\objects\system_nrf51.o: ..\nrf_drivers\hal\nrf51.h
+.\objects\system_nrf51.o: ..\arm\Include\core_cm0.h
+.\objects\system_nrf51.o: ..\arm\Include\core_cmInstr.h
+.\objects\system_nrf51.o: ..\arm\Include\core_cmFunc.h
+.\objects\system_nrf51.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\objects\system_nrf51.o: ..\nrf_drivers\hal\nrf51_bitfields.h
+.\objects\system_nrf51.o: ..\arm\Include\core_cm0.h
+.\objects\system_nrf51.o: ..\nrf_drivers\hal\nrf51_deprecated.h
+.\objects\system_nrf51.o: ..\nrf_drivers\hal\compiler_abstraction.h
