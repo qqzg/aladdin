@@ -1,0 +1,15 @@
+.\output\ble_srv_common.o: ..\nrf_ble\ble_srv_common.c
+.\output\ble_srv_common.o: ..\nrf_ble\ble_srv_common.h
+.\output\ble_srv_common.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\ble_srv_common.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\ble_types.h
+.\output\ble_srv_common.o: ..\nrf_libraries\util\app_util.h
+.\output\ble_srv_common.o: ..\nrf_drivers\hal\compiler_abstraction.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\ble_gap.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\ble_ranges.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\nrf_svc.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\ble_gatt.h
+.\output\ble_srv_common.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\output\ble_srv_common.o: ..\nrf_libraries\util\nordic_common.h
+.\output\ble_srv_common.o: ..\nrf_libraries\app_error.h
+.\output\ble_srv_common.o: ..\nrf_softdevice\headers\nrf_error.h

@@ -1,0 +1,14 @@
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf_delay.c
+.\output\nrf_delay.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\compiler_abstraction.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf51.h
+.\output\nrf_delay.o: ..\arm\Include\core_cm0.h
+.\output\nrf_delay.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\nrf_delay.o: ..\arm\Include\core_cmInstr.h
+.\output\nrf_delay.o: ..\arm\Include\core_cmFunc.h
+.\output\nrf_delay.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf51_bitfields.h
+.\output\nrf_delay.o: ..\arm\Include\core_cm0.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf51_deprecated.h
+.\output\nrf_delay.o: ..\nrf_drivers\hal\nrf_delay.h
