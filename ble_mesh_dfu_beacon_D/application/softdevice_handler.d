@@ -9,7 +9,7 @@
 .\softdevice_handler.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\softdevice_handler.o: ..\arm\Include\core_cmInstr.h
 .\softdevice_handler.o: ..\arm\Include\core_cmFunc.h
-.\softdevice_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\softdevice_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\softdevice_handler.o: ..\nrf_softdevice\headers\nrf_soc.h
 .\softdevice_handler.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\softdevice_handler.o: ..\nrf_drivers\hal\nrf51_bitfields.h

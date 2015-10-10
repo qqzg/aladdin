@@ -853,17 +853,7 @@ void rbc_mesh_event_handler(rbc_mesh_event_t* evt)
 	static int i = 0;
 	static int conf = 0;
 	static int updata = 0;
-	static unsigned short lasr_version = 0xfff0;
-	unsigned short current_ver = evt->data[-2] | evt->data[-1] << 8;
 	
-	/*只处理handle为1的mesh网格数据*/
-	if (evt->value_handle != 1)
-		return ;
-	
-	if(lasr_version == current_ver && evt->is_conn == 0)
-		return ;
-	else
-		lasr_version = current_ver;
     switch (evt->event_type)
     {
         case RBC_MESH_EVENT_TYPE_CONFLICTING_VAL:
@@ -880,7 +870,7 @@ void rbc_mesh_event_handler(rbc_mesh_event_t* evt)
 //			else
 //				pwm_evt_handler(1, 1, 1);
             if (evt->value_handle == 1)
-				dispose_recv_pkt(evt->data, evt->data_len);
+				dispose_recv_pkt(evt, evt->data, evt->data_len);
 
             //led_config(evt->value_handle, evt->data[0]);
             break;

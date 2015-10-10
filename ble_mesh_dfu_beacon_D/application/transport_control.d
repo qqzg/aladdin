@@ -9,7 +9,7 @@
 .\transport_control.o: ..\arm\Include\core_cm0.h
 .\transport_control.o: ..\arm\Include\core_cmInstr.h
 .\transport_control.o: ..\arm\Include\core_cmFunc.h
-.\transport_control.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\transport_control.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\transport_control.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\transport_control.o: ..\nrf_softdevice\headers\ble.h
 .\transport_control.o: ..\nrf_softdevice\headers\ble_ranges.h

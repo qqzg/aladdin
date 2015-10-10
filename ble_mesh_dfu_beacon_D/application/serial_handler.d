@@ -10,7 +10,7 @@
 .\serial_handler.o: ..\arm\Include\core_cm0.h
 .\serial_handler.o: ..\arm\Include\core_cmInstr.h
 .\serial_handler.o: ..\arm\Include\core_cmFunc.h
-.\serial_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\serial_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\serial_handler.o: ..\nrf_softdevice\headers\ble.h
 .\serial_handler.o: ..\nrf_softdevice\headers\ble_ranges.h
 .\serial_handler.o: ..\nrf_softdevice\headers\ble_types.h

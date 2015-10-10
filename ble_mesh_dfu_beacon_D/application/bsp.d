@@ -8,7 +8,7 @@
 .\bsp.o: ..\arm\Include\core_cm0.h
 .\bsp.o: ..\arm\Include\core_cmInstr.h
 .\bsp.o: ..\arm\Include\core_cmFunc.h
-.\bsp.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\bsp.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\bsp.o: ..\nrf_drivers\hal\nrf51_bitfields.h
 .\bsp.o: ..\arm\Include\core_cm0.h
 .\bsp.o: ..\bsp\pca10028.h

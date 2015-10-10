@@ -6,7 +6,7 @@
 .\mesh_srv.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\mesh_srv.o: ..\arm\Include\core_cmInstr.h
 .\mesh_srv.o: ..\arm\Include\core_cmFunc.h
-.\mesh_srv.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\mesh_srv.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\mesh_srv.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\mesh_srv.o: ..\nrf_softdevice\headers\ble.h
 .\mesh_srv.o: ..\nrf_softdevice\headers\ble_ranges.h

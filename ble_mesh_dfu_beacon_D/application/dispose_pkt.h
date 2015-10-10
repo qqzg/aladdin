@@ -2,6 +2,7 @@
 
 #define __DISPOSE_PKT_H_
 #include "stdint.h"
+#include "rbc_mesh.h"
 typedef struct BDADDR
 {
 	uint8_t  dst_addr[6];
@@ -56,7 +57,7 @@ typedef struct
 	uint8_t   name[31];
 }dev_name_t;
 void recv_pkt_from_mesh(uint8_t *data, uint8_t len); 
-void dispose_recv_pkt(uint8_t *data, uint8_t len);
+void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len);
 void dispose_pkt_init(void);
 void generate_pkt_2_mesh(uint8_t *mesh_data, uint8_t type);
 #endif 

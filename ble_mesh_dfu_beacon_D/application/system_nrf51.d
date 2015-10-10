@@ -6,7 +6,7 @@
 .\system_nrf51.o: ..\arm\Include\core_cm0.h
 .\system_nrf51.o: ..\arm\Include\core_cmInstr.h
 .\system_nrf51.o: ..\arm\Include\core_cmFunc.h
-.\system_nrf51.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\system_nrf51.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\system_nrf51.o: ..\nrf_drivers\hal\nrf51_bitfields.h
 .\system_nrf51.o: ..\arm\Include\core_cm0.h
 .\system_nrf51.o: ..\nrf_drivers\hal\nrf51_deprecated.h

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\ble_mesh_dfu_becon.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\ble_mesh_dfu_becon.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Oct 09 14:54:02 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Oct 09 22:56:58 2015
 <BR><P>
 <H3>Maximum Stack Usage =        464 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1068,8 +1068,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[101]"></a>dispose_recv_pkt</STRONG> (Thumb, 492 bytes, Stack size 40 bytes, dispose_pkt.o(i.dispose_recv_pkt))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = dispose_recv_pkt &rArr; rbc_mesh_value_set &rArr; mesh_srv_char_val_set &rArr; trickle_rx_inconsistent &rArr; trickle_timer_reset &rArr; trickle_interval_begin
+<P><STRONG><a name="[101]"></a>dispose_recv_pkt</STRONG> (Thumb, 648 bytes, Stack size 48 bytes, dispose_pkt.o(i.dispose_recv_pkt))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = dispose_recv_pkt &rArr; rbc_mesh_value_set &rArr; mesh_srv_char_val_set &rArr; trickle_rx_inconsistent &rArr; trickle_timer_reset &rArr; trickle_interval_begin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rbc_mesh_value_set
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_evt_handler
@@ -1450,7 +1450,7 @@ Global Symbols
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;order_search
 </UL>
 
-<P><STRONG><a name="[133]"></a>rbc_mesh_event_handler</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, main.o(i.rbc_mesh_event_handler))
+<P><STRONG><a name="[133]"></a>rbc_mesh_event_handler</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, main.o(i.rbc_mesh_event_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = rbc_mesh_event_handler &rArr; dispose_recv_pkt &rArr; rbc_mesh_value_set &rArr; mesh_srv_char_val_set &rArr; trickle_rx_inconsistent &rArr; trickle_timer_reset &rArr; trickle_interval_begin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispose_recv_pkt

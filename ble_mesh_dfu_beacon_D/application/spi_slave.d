@@ -8,7 +8,7 @@
 .\spi_slave.o: ..\arm\Include\core_cm0.h
 .\spi_slave.o: ..\arm\Include\core_cmInstr.h
 .\spi_slave.o: ..\arm\Include\core_cmFunc.h
-.\spi_slave.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\spi_slave.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\spi_slave.o: ..\nrf_drivers\hal\nrf_gpio.h
 .\spi_slave.o: ..\nrf_drivers\hal\nrf51_bitfields.h
 .\spi_slave.o: ..\arm\Include\core_cm0.h

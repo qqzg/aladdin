@@ -250,7 +250,7 @@ void recv_pkt_from_mesh(uint8_t *data, uint8_t len)
 		trans_data_t *trans = (trans_data_t *)&data[index];
 		if(trans->len.B && trans->len.E)// one packet
 		{
-			dispose_recv_pkt(data, len);
+//			dispose_recv_pkt(data, len);
 		}
 		else if(trans->len.B)           // 
 		{
@@ -263,15 +263,19 @@ void recv_pkt_from_mesh(uint8_t *data, uint8_t len)
 			memcpy(&recv_data.data[recv_data.total_len], &data[HEADER_LEN], trans->len.len);
 			recv_data.total_len = recv_data.total_len + trans->len.len;
 			recv_data.data[0] = version;
-			dispose_recv_pkt(recv_data.data, recv_data.total_len);
+//			dispose_recv_pkt(recv_data.data, recv_data.total_len);
 		}
 	}
 }
 
-void dispose_recv_pkt(uint8_t *data, uint8_t len)
+void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 {
 	uint8_t index = 0;
 	static uint8_t mesh_data[28] = { 0 };
+	
+	static unsigned short lasr_version = 0xfff0;
+	unsigned short current_ver = evt->data[-2] | evt->data[-1] << 8;
+	
 //	if(data[index] == version)
 //		return ;
 //	version = data[index];
@@ -289,6 +293,12 @@ void dispose_recv_pkt(uint8_t *data, uint8_t len)
 		switch(opcode)
 		{
 		case config_color:
+			
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+			
 			app_timer_stop(m_auto_chg_timer_id);
 			if(trans->len.len < 3)
 				return ;
@@ -304,6 +314,11 @@ void dispose_recv_pkt(uint8_t *data, uint8_t len)
 			break;
 		
 		case config_name:
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+			
 			if(trans->len.len < 1)
 				return ;
 			memset(&local_dev_name, 0, sizeof(local_dev_name));
@@ -326,17 +341,34 @@ void dispose_recv_pkt(uint8_t *data, uint8_t len)
 			rbc_mesh_value_set(2, &mesh_data[6], 20);
 			break;
 		case power_on:
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+			
 			app_timer_stop(m_auto_chg_timer_id);
 			pwm_evt_handler(r_value, g_value, b_value);
 			break;
 		
 		case power_off:
+			
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+		
 			app_timer_stop(m_auto_chg_timer_id);
 			pwm_evt_handler(0xff, 0xff, 0xff);
 			break;
 		case mode_flow:
 		case mode_candles:
 		case mode_strobe:
+			
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+		
 			app_timer_stop(m_auto_chg_timer_id);
 			color_pointer = 0;
 			chg_mode      = opcode;
@@ -350,6 +382,12 @@ void dispose_recv_pkt(uint8_t *data, uint8_t len)
 		case mode_flash:
 		case mode_smooth:
 		case mode_listen:
+			
+			if(lasr_version == current_ver && evt->is_conn == 0)
+				return ;
+			else
+				lasr_version = current_ver;
+			
 			app_timer_stop(m_auto_chg_timer_id);
 			color_pointer = 6;
 			chg_mode      = opcode;

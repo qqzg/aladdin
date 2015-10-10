@@ -6,7 +6,7 @@
 .\pwm.o: ..\arm\Include\core_cm0.h
 .\pwm.o: ..\arm\Include\core_cmInstr.h
 .\pwm.o: ..\arm\Include\core_cmFunc.h
-.\pwm.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\pwm.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\pwm.o: ..\nrf_drivers\hal\nrf51_bitfields.h
 .\pwm.o: ..\arm\Include\core_cm0.h
 .\pwm.o: ..\nrf_drivers\hal\nrf51_deprecated.h

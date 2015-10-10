@@ -13,7 +13,7 @@
 .\pstorage.o: ..\arm\Include\core_cm0.h
 .\pstorage.o: ..\arm\Include\core_cmInstr.h
 .\pstorage.o: ..\arm\Include\core_cmFunc.h
-.\pstorage.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\pstorage.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\pstorage.o: ..\nrf_drivers\hal\nrf51_bitfields.h
 .\pstorage.o: ..\arm\Include\core_cm0.h
 .\pstorage.o: ..\nrf_drivers\hal\nrf51_deprecated.h
