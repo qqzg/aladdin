@@ -3,6 +3,8 @@
 ".\output\main.o"
 ".\output\pwm.o"
 ".\output\switch_color.o"
+".\output\flash_opt.o"
+".\output\changecolor.o"
 ".\output\mesh_aci.o"
 ".\output\mesh_srv.o"
 ".\output\radio_control.o"

@@ -62,6 +62,7 @@
 #include "dfu_app_handler.h"
 #endif // BLE_DFU_APP_SUPPORT
 
+#include "flash_opt.h"
 
 //add beacon{
 #define APP_BEACON_INFO_LENGTH        0x17                              /**< Total length of information advertised by the Beacon. */
@@ -765,15 +766,15 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
+		{
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
 
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
-
-            //err_code = bsp_buttons_enable(BSP_BUTTONS_NONE);
-            //APP_ERROR_CHECK(err_code);
-
+ 
             advertising_start();
+			
+		}
             break;
 
         case BLE_GAP_EVT_TIMEOUT:
@@ -1041,9 +1042,12 @@ int main(void)
 	//}					
 	ble_stack_init();
 	//{
-	dispose_pkt_init();
+	//dispose_pkt_init();
 	//}
     device_manager_init();
+	//{
+	dispose_pkt_init();
+	//}
     gap_params_init();
     advertising_init(BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE);
     services_init();

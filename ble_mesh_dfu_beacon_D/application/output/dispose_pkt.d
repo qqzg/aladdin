@@ -7,7 +7,7 @@
 .\output\dispose_pkt.o: ..\arm\Include\core_cm0.h
 .\output\dispose_pkt.o: ..\arm\Include\core_cmInstr.h
 .\output\dispose_pkt.o: ..\arm\Include\core_cmFunc.h
-.\output\dispose_pkt.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\output\dispose_pkt.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\output\dispose_pkt.o: ..\nrf_softdevice\headers\ble.h
 .\output\dispose_pkt.o: ..\nrf_softdevice\headers\ble_ranges.h
 .\output\dispose_pkt.o: ..\nrf_softdevice\headers\ble_types.h
@@ -28,3 +28,7 @@
 .\output\dispose_pkt.o: ..\nrf_drivers\hal\compiler_abstraction.h
 .\output\dispose_pkt.o: ..\nrf_libraries\app_scheduler.h
 .\output\dispose_pkt.o: switch_color.h
+.\output\dispose_pkt.o: changecolor.h
+.\output\dispose_pkt.o: flash_opt.h
+.\output\dispose_pkt.o: ..\nrf_drivers\pstorage.h
+.\output\dispose_pkt.o: ..\nrf_drivers\pstorage_platform.h

@@ -7,7 +7,7 @@
 .\output\timeslot_handler.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\timeslot_handler.o: ..\arm\Include\core_cmInstr.h
 .\output\timeslot_handler.o: ..\arm\Include\core_cmFunc.h
-.\output\timeslot_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\output\timeslot_handler.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\output\timeslot_handler.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\output\timeslot_handler.o: ..\nrf_softdevice\headers\ble.h
 .\output\timeslot_handler.o: ..\nrf_softdevice\headers\ble_ranges.h

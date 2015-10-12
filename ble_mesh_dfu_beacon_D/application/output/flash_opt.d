@@ -1,0 +1,9 @@
+.\output\flash_opt.o: flash_opt.c
+.\output\flash_opt.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\flash_opt.o: flash_opt.h
+.\output\flash_opt.o: ..\nrf_drivers\pstorage.h
+.\output\flash_opt.o: ..\nrf_drivers\pstorage_platform.h
+.\output\flash_opt.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\flash_opt.o: ..\nrf_libraries\app_error.h
+.\output\flash_opt.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\output\flash_opt.o: ..\nrf_softdevice\headers\nrf_error.h

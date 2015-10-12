@@ -353,11 +353,12 @@ ARM Macro Assembler    Page 6
               00000800 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
-ork --depend=.\output\arm_startup_nrf51.d -o.\output\arm_startup_nrf51.o -IF:\S
-eeLight\aladdin\ble_mesh_dfu_beacon_D\application\RTE -Id:\Keil_v5\ARM\PACK\Nor
-dicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include -Id:\Keil_v5\ARM\CMS
-IS\Include --predefine="__UVISION_VERSION SETA 515" --predefine="NRF51 SETA 1" 
---list=.\arm_startup_nrf51.lst ..\device\arm_startup_nrf51.s
+ork --depend=.\output\arm_startup_nrf51.d -o.\output\arm_startup_nrf51.o -IC:\U
+sers\qingq\Desktop\nrf\aladdin-master\ble_mesh_dfu_beacon_D\application\RTE -Id
+:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Includ
+e -Id:\Keil_v5\ARM\CMSIS\Include --predefine="__UVISION_VERSION SETA 515" --pre
+define="NRF51 SETA 1" --list=.\arm_startup_nrf51.lst ..\device\arm_startup_nrf5
+1.s
 
 
 

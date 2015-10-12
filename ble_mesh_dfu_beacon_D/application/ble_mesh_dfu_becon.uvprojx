@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>nRF51822_xxAC</Device>
           <Vendor>Nordic Semiconductor</Vendor>
-          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.1.1.4</PackID>
+          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.0.3</PackID>
           <PackURL>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/</PackURL>
           <Cpu>IROM(0x00000000,0x40000) IRAM(0x20000000,0x8000) CPUTYPE("Cortex-M0") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -312,7 +312,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x16000</StartAddress>
-                <Size>0x29000</Size>
+                <Size>0xc000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -431,6 +431,16 @@
               <FileName>switch_color.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\switch_color.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash_opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\flash_opt.c</FilePath>
+            </File>
+            <File>
+              <FileName>changecolor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\changecolor.c</FilePath>
             </File>
           </Files>
         </Group>

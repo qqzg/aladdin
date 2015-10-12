@@ -5,12 +5,16 @@
 #include "pwm.h"
 #include "app_timer.h"
 #include "switch_color.h"
+#include "changecolor.h"
+//add flash
+#include "flash_opt.h" 
 #define HEADER_LEN			10//16
 static uint8_t version = 0;
 static ble_gap_addr_t local_addr;
 dev_name_t     local_dev_name;
+static char dev_name[20] = "led_";
 
-
+static float m_angle;
 uint8_t broadcast_addr[6] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
 bdaddr_t recv_pkt_addr_hdr;
@@ -35,9 +39,9 @@ static struct
 static app_timer_id_t                   m_auto_chg_timer_id;
 static uint8_t                          chg_mode      = 0;
 static uint8_t                          color_pointer = 0;
-static uint8_t                          r_values[8]  = { 0xfe, 0x01, 0xff - 0x10, 0x01, 0xff - 0xc9, 0xfe, 0x01, 0xfe};
-static uint8_t                          g_values[8]  = { 0x01, 0xfe, 0xff - 0xa3, 0x01, 0xff - 0x16, 0xfe, 0xfe, 0x01};
-static uint8_t                          b_values[8]  = { 0x01, 0x01, 0xff - 0x90, 0xfe, 0xff - 0x6f, 0x01, 0xfe, 0xfe};
+static uint8_t                          r_values[8]  = { 0xfe, 0x01, 0x10, 0x01, 0xc9, 0xfe, 0x01, 0xfe};
+static uint8_t                          g_values[8]  = { 0x11, 0xfe, 0xc3, 0x01, 0x16, 0xfe, 0xfe, 0x01};
+static uint8_t                          b_values[8]  = { 0x11, 0x01, 0x90, 0xfe, 0x9f, 0x01, 0xfe, 0xfe};
 static uint8_t                          current_light_state = 0;
 static uint8_t                          current_light_value = 0;
 static bool								is_increase         = true;
@@ -65,7 +69,7 @@ static void auto_chg_mode_handler(void *p_context)
                 pwm_evt_handler(0xff, 0xff, 0xff);
                 current_light_state = LIGHT_OFF;
                 app_timer_start(m_auto_chg_timer_id, 
-                                APP_TIMER_TICKS(200 , RFSTAR_APP_TIMER_PRESCALER), 
+                                APP_TIMER_TICKS(70 , RFSTAR_APP_TIMER_PRESCALER), 
                                 NULL);
                 return;
             }
@@ -75,7 +79,7 @@ static void auto_chg_mode_handler(void *p_context)
                 current_light_state = LIGHT_ON;
                 color_pointer = (color_pointer + 1) % NUMBER_OF_COLOR;
                 app_timer_start(m_auto_chg_timer_id, 
-                                APP_TIMER_TICKS(1000, RFSTAR_APP_TIMER_PRESCALER), 
+                                APP_TIMER_TICKS(700, RFSTAR_APP_TIMER_PRESCALER), 
                                 NULL);
             }
             
@@ -84,21 +88,32 @@ static void auto_chg_mode_handler(void *p_context)
         case mode_strobe:
         {
             
-            if(current_light_value == 1)
-            {
-                rgb.red   = r_values[color_pointer];
-                rgb.green = g_values[color_pointer];
-                rgb.blue  = b_values[color_pointer];
-                rgb_to_hsl(&rgb, &hsl);
-                color_pointer++;
-                
-            }
-            current_light_value = (uint8_t)hsl.luminance;
-            hsl.luminance = --current_light_value;
-            hsl_to_rgb(&hsl, &rgb);
+//            if(current_light_value == 1)
+//            {
+//                rgb.red   = r_values[color_pointer];
+//                rgb.green = g_values[color_pointer];
+//                rgb.blue  = b_values[color_pointer];
+//                rgb_to_hsl(&rgb, &hsl);
+//                color_pointer++;
+//                
+//            }
+//            current_light_value = (uint8_t)hsl.luminance;
+//            hsl.luminance = --current_light_value;
+//            hsl_to_rgb(&hsl, &rgb);
+//			pwm_evt_handler(255-rgb.red, 255-rgb.green, 255-rgb.blue);
+//            app_timer_start(m_auto_chg_timer_id, 
+//                            APP_TIMER_TICKS(100 , RFSTAR_APP_TIMER_PRESCALER), 
+//                            NULL);
+			if(m_angle >= 3.14)
+				m_angle = -(3.14);
+			m_angle = m_angle + 0.01; 
+			int argb_value = calculateColor(m_angle);
+			rgb.red = (argb_value >> 16) & 0xff;
+			rgb.green = (argb_value >> 8) & 0xff;
+			rgb.blue = (argb_value ) & 0xff;
 			pwm_evt_handler(255-rgb.red, 255-rgb.green, 255-rgb.blue);
-            app_timer_start(m_auto_chg_timer_id, 
-                            APP_TIMER_TICKS(500 , RFSTAR_APP_TIMER_PRESCALER), 
+			app_timer_start(m_auto_chg_timer_id, 
+                            APP_TIMER_TICKS(100 , RFSTAR_APP_TIMER_PRESCALER), 
                             NULL);
         }
 
@@ -112,7 +127,7 @@ static void auto_chg_mode_handler(void *p_context)
                 pwm_evt_handler(0xff, 0xff, 0xff);
                 current_light_state = LIGHT_OFF;
                 app_timer_start(m_auto_chg_timer_id, 
-                                APP_TIMER_TICKS(200 , RFSTAR_APP_TIMER_PRESCALER), 
+                                APP_TIMER_TICKS(60 , RFSTAR_APP_TIMER_PRESCALER), 
                                 NULL);
                 return;
             }
@@ -131,33 +146,44 @@ static void auto_chg_mode_handler(void *p_context)
 		case mode_smooth:
 		{
 		
-			if(current_light_value <= 5 || current_light_value >= 80)
-            {
-                rgb.red   = r_values[color_pointer];
-                rgb.green = g_values[color_pointer];
-                rgb.blue  = b_values[color_pointer];
-                rgb_to_hsl(&rgb, &hsl);
-                color_pointer++;
-                if(current_light_value <= 5)
-				{
-					is_increase = true;
-					hsl.luminance = 5;
-				}
-				else
-				{
-					is_increase = false;
-					hsl.luminance = 80;
-				}
-            }
-            current_light_value = (uint8_t)hsl.luminance;
-			if(is_increase == false)
-				hsl.luminance = --current_light_value;
-			else
-				hsl.luminance = ++current_light_value;
-            hsl_to_rgb(&hsl, &rgb);
+//			if(current_light_value <= 5 || current_light_value >= 80)
+//            {
+//                rgb.red   = r_values[color_pointer];
+//                rgb.green = g_values[color_pointer];
+//                rgb.blue  = b_values[color_pointer];
+//                rgb_to_hsl(&rgb, &hsl);
+//                color_pointer++;
+//                if(current_light_value <= 5)
+//				{
+//					is_increase = true;
+//					hsl.luminance = 5;
+//				}
+//				else
+//				{
+//					is_increase = false;
+//					hsl.luminance = 80;
+//				}
+//            }
+//            current_light_value = (uint8_t)hsl.luminance;
+//			if(is_increase == false)
+//				hsl.luminance = --current_light_value;
+//			else
+//				hsl.luminance = ++current_light_value;
+//            hsl_to_rgb(&hsl, &rgb);
+//			pwm_evt_handler(255-rgb.red, 255-rgb.green, 255-rgb.blue);
+//            app_timer_start(m_auto_chg_timer_id, 
+//                            APP_TIMER_TICKS(400 , RFSTAR_APP_TIMER_PRESCALER), 
+//                            NULL);
+			if(m_angle >= 3.14)
+				m_angle = -(3.14);
+			m_angle = m_angle + 0.01; 
+			int argb_value = calculateColor(m_angle);
+			rgb.red = (argb_value >> 16) & 0xff;
+			rgb.green = (argb_value >> 8) & 0xff;
+			rgb.blue = (argb_value ) & 0xff;
 			pwm_evt_handler(255-rgb.red, 255-rgb.green, 255-rgb.blue);
-            app_timer_start(m_auto_chg_timer_id, 
-                            APP_TIMER_TICKS(500 , RFSTAR_APP_TIMER_PRESCALER), 
+			app_timer_start(m_auto_chg_timer_id, 
+                            APP_TIMER_TICKS(300 , RFSTAR_APP_TIMER_PRESCALER), 
                             NULL);
 		}
 		
@@ -169,7 +195,7 @@ static void auto_chg_mode_handler(void *p_context)
 			pwm_evt_handler(r_values[color_pointer], g_values[color_pointer], b_values[color_pointer]);
             color_pointer = (color_pointer + 1) % NUMBER_OF_COLOR;
             app_timer_start(m_auto_chg_timer_id, 
-                APP_TIMER_TICKS(500, RFSTAR_APP_TIMER_PRESCALER), 
+                APP_TIMER_TICKS(1000, RFSTAR_APP_TIMER_PRESCALER), 
                 NULL);
 			
 		}
@@ -214,22 +240,40 @@ static void bdaddr_2_str(uint8_t *src, char *dst, int len)
 void dispose_pkt_init()
 {
 	uint32_t err_code;
-	char dev_name[20] = "led_";
+	uint8_t flash_data[36] = { 0 } ;
+	
 	ble_gap_conn_sec_mode_t sec_mode;
+	usr_falsh_init();
 	//add scenery mode
 	sl_app_timer_init();
 	//
 	sd_ble_gap_address_get(&local_addr);
 	bdaddr_2_str(local_addr.addr, &dev_name[4], 2);
-	local_dev_name.len = 31;
-	err_code = sd_ble_gap_device_name_get(local_dev_name.name, &local_dev_name.len);
-	memcpy(local_dev_name.name, dev_name, strlen(dev_name)); 
-	local_dev_name.len = strlen(dev_name);
-//	err_code = sd_ble_gap_device_name_set(&sec_mode,
-//                                          (const uint8_t *)dev_name,
-//                                          strlen(dev_name));
-    //APP_ERROR_CHECK(err_code);
+	//local_dev_name.len = 20;
+	//err_code = sd_ble_gap_device_name_get(local_dev_name.name, &local_dev_name.len);
+	
+	load_device_name((char *)flash_data, sizeof(flash_data));
+	if(flash_data[0] == '@')
+	{
+		local_dev_name.len = flash_data[1] > 31 ? 31 : flash_data[1]; //len
+		memcpy(local_dev_name.name, &flash_data[2], local_dev_name.len);
+		
+	}
+	else
+	{
+		memcpy(local_dev_name.name, dev_name, strlen(dev_name)); 
+		local_dev_name.len = strlen(dev_name);
+	}
 	memset(&recv_data, 0, sizeof(recv_data));
+	//flash opt{
+//	char name[16] = "hubinv1234567890";
+//	char dest[16] = { 0 };
+//	usr_falsh_init();
+//	load_device_name(dest, 16);
+//	store_device_name(name, 16);
+//	load_device_name(dest, 16);
+//	err_code++;
+	//}
 }
 
 
@@ -314,13 +358,22 @@ void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 			break;
 		
 		case config_name:
+		{
 			if(lasr_version == current_ver && evt->is_conn == 0)
 				return ;
 			else
 				lasr_version = current_ver;
 			
 			if(trans->len.len < 1)
+			{
+				memcpy(local_dev_name.name, dev_name, strlen(dev_name)); 
+				local_dev_name.len = strlen(dev_name);
+				ble_gap_conn_sec_mode_t sec_mode;
+				BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
+				sd_ble_gap_device_name_set(&sec_mode, local_dev_name.name, local_dev_name.len);
+				usr_clear_flash();
 				return ;
+			}
 			memset(&local_dev_name, 0, sizeof(local_dev_name));
 			local_dev_name.len = 31;
 			memcpy(local_dev_name.name, trans->payload, trans->len.len);
@@ -328,6 +381,12 @@ void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 			ble_gap_conn_sec_mode_t sec_mode;
 			BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
 			sd_ble_gap_device_name_set(&sec_mode, local_dev_name.name, local_dev_name.len);
+			uint8_t flash_data[36] = { 0 };
+			flash_data[0] = '@';
+			flash_data[1] = local_dev_name.len;
+			memcpy(&flash_data[2], local_dev_name.name, local_dev_name.len);
+			store_device_name((char*)flash_data, 36);
+		}
 			break;
 		case get_devices_list:
 			memset(mesh_data, 0, sizeof(mesh_data));
@@ -369,6 +428,7 @@ void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 			else
 				lasr_version = current_ver;
 		
+			m_angle = 0;
 			app_timer_stop(m_auto_chg_timer_id);
 			color_pointer = 0;
 			chg_mode      = opcode;
@@ -388,6 +448,7 @@ void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 			else
 				lasr_version = current_ver;
 			
+			m_angle = 3.14/2;
 			app_timer_stop(m_auto_chg_timer_id);
 			color_pointer = 6;
 			chg_mode      = opcode;

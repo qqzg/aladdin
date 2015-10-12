@@ -5,7 +5,7 @@
 .\output\trickle.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\trickle.o: ..\arm\Include\core_cmInstr.h
 .\output\trickle.o: ..\arm\Include\core_cmFunc.h
-.\output\trickle.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\system_nrf51.h
+.\output\trickle.o: d:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\system_nrf51.h
 .\output\trickle.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\output\trickle.o: ..\rbc_mesh\include\rbc_mesh_common.h
 .\output\trickle.o: ..\nrf_libraries\app_error.h
