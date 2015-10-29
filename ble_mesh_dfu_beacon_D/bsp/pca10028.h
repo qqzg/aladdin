@@ -16,9 +16,9 @@
 #define LEDS_NUMBER    4
 
 #define LED_START      21
-#define LED_1          21
-#define LED_2          22
-#define LED_3          23
+#define LED_1          5  //21  r
+#define LED_2          4  //22  g
+#define LED_3          3  //23  b
 #define LED_4          24
 #define LED_STOP       24
 

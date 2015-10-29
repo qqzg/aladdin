@@ -348,9 +348,9 @@ void dispose_recv_pkt(rbc_mesh_event_t* evt, uint8_t *data, uint8_t len)
 				return ;
 			if(r_value == trans->payload[0] && g_value == trans->payload[1] && b_value == trans->payload[2])
 				return ;
-			r_value = trans->payload[0];//255 - trans->payload[0];//[index];
+			b_value = trans->payload[0];//255 - trans->payload[0];//[index];
 			g_value = trans->payload[1];//255 - trans->payload[1];//data[index + 1];
-			b_value = trans->payload[2];//255 - trans->payload[2];//data[index + 2];
+			r_value = trans->payload[2];//255 - trans->payload[2];//data[index + 2];
 			pwm_evt_handler(r_value, g_value, b_value);
 			break;
 		case config_brightness:
